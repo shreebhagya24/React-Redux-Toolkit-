@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import {useSelector , useDispatch} from 'react-redux';
 
-function App() {
+
+const App = () => {
+
+  const {c} = useSelector((state) => state.custom);
+  const dispatch = useDispatch();
+  
+  const addBtn = () =>
+  {
+    dispatch ({
+      type : "increment",
+    });
+
+  };
+
+  const subBtn = ()=> 
+  {
+    dispatch ({
+    type : "decrement",
+
+  });
+  };
+
+  const byValue = () =>
+  {
+    dispatch ({
+      type: "incrementByValue",
+      payload: 25,
+    });
+  };
+   
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+    <h1>This is React Redux</h1>
+    <h2>{c}</h2>
+    <div className='container1'>
+    <button className='btnInc' onClick={addBtn}>Add</button>
+    <button className='btnDec' onClick={subBtn}>Subtract</button>
+    <button className='btnReset' onClick={byValue}>Increment by 25</button>
+    
     </div>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App
